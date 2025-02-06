@@ -1,6 +1,4 @@
-from napari_plugin_engine import napari_hook_implementation
-from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QPushButton, QVBoxLayout, QWidget
+from qtpy.QtWidgets import QPushButton
 
 
 class QToggleButton(QPushButton):

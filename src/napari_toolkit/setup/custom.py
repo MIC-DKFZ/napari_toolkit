@@ -2,17 +2,18 @@ from typing import Callable, List, Optional
 
 from napari.layers import Layer
 from napari.viewer import Viewer
+from qtpy.QtCore import Qt
 from qtpy.QtGui import QKeySequence
 from qtpy.QtWidgets import QLayout, QShortcut, QWidget
-from qtpy.QtCore import Qt
+
 from napari_toolkit.setup.utils import connect_widget
+from napari_toolkit.widgets.float_slider import QFloatSlider
+from napari_toolkit.widgets.label_slider import QFloatLabelSlider, QLabelSlider
 from napari_toolkit.widgets.layer_select import QLayerSelect
 from napari_toolkit.widgets.progress_edit import QProgressbarEdit
-from napari_toolkit.widgets.slider_edit import QSliderEdit
+from napari_toolkit.widgets.slider_edit import QFloatSliderEdit, QSliderEdit
 from napari_toolkit.widgets.switch import QHSwitch, QVSwitch
 from napari_toolkit.widgets.toggle_button import QToggleButton
-from napari_toolkit.widgets.float_slider import QFloatSlider
-from napari_toolkit.widgets.label_slider import QLabelSlider, QFloatLabelSlider
 
 
 def setup_layerselect(
@@ -128,13 +129,16 @@ def setup_togglebutton(
 
 def setup_progressbaredit(
     layout: QLayout,
+    minimum: Optional[int] = None,
+    maximum: Optional[int] = None,
+    default: Optional[int] = None,
     function: Optional[Callable] = None,
     tooltips: Optional[str] = None,
     shortcut: Optional[str] = None,
     stretch: int = 1,
 ) -> QWidget:
 
-    _widget = QProgressbarEdit()
+    _widget = QProgressbarEdit(min_value=minimum, max_value=maximum, start_value=default)
 
     return connect_widget(
         layout,
@@ -149,13 +153,43 @@ def setup_progressbaredit(
 
 def setup_slideredit(
     layout: QLayout,
+    minimum: Optional[int] = 0,
+    maximum: Optional[int] = 100,
+    default: Optional[int] = 50,
     function: Optional[Callable] = None,
     tooltips: Optional[str] = None,
     shortcut: Optional[str] = None,
     stretch: int = 1,
 ) -> QWidget:
 
-    _widget = QSliderEdit()
+    _widget = QSliderEdit(min_value=minimum, max_value=maximum, start_value=default)
+
+    return connect_widget(
+        layout,
+        _widget,
+        widget_event=_widget.index_changed,
+        function=function,
+        shortcut=shortcut,
+        tooltips=tooltips,
+        stretch=stretch,
+    )
+
+
+def setup_floatslideredit(
+    layout: QLayout,
+    digits: int = 1,
+    minimum: Optional[int] = 0,
+    maximum: Optional[int] = 1,
+    default: Optional[int] = 0.5,
+    function: Optional[Callable] = None,
+    tooltips: Optional[str] = None,
+    shortcut: Optional[str] = None,
+    stretch: int = 1,
+) -> QWidget:
+
+    _widget = QFloatSliderEdit(
+        min_value=minimum, max_value=maximum, start_value=default, digits=digits
+    )
 
     return connect_widget(
         layout,

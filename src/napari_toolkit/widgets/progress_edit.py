@@ -1,13 +1,9 @@
-from napari_plugin_engine import napari_hook_implementation
-from qtpy.QtCore import Qt, Signal
+from qtpy.QtCore import Signal
 from qtpy.QtWidgets import (
     QHBoxLayout,
     QLineEdit,
     QProgressBar,
     QPushButton,
-    QSizePolicy,
-    QSpinBox,
-    QVBoxLayout,
     QWidget,
 )
 
@@ -15,9 +11,10 @@ from qtpy.QtWidgets import (
 class QProgressbarEdit(QWidget):
     index_changed = Signal()
 
-    def __init__(self, parent=None, max_value=100, start_value=0):
+    def __init__(self, parent=None, min_value=0, max_value=100, start_value=0):
         super().__init__(parent)
 
+        self.min_value = min_value
         self.max_value = max_value
         self.current_value = start_value
         self.init_ui()
@@ -25,6 +22,7 @@ class QProgressbarEdit(QWidget):
 
     def init_ui(self):
         self.progress_bar = QProgressBar(self)
+        self.progress_bar.setMinimum(self.min_value)
         self.progress_bar.setMaximum(self.max_value)
         self.progress_bar.setValue(self.current_value)
         self.progress_bar.setFormat("%v/%m")

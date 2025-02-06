@@ -13,17 +13,17 @@ Toolkit to handle  QWidgets for Napari Plugins.
 - QSpinBox
 - QDoubleSpinBox
 
-#### Progressbar
-- QProgressBar
-- QProgressbarEdit
-
 #### Slider
 - QSlider
 - QLabelSlider
 - QSliderEdit
 - QFloatSlider
 - QFloatLabelSlider
-- QFloatSliderEdit - TODO
+- QFloatSliderEdit
+
+#### Progressbar
+- QProgressBar
+- QProgressbarEdit
 
 #### Text
 - QLabel
@@ -49,23 +49,23 @@ Toolkit to handle  QWidgets for Napari Plugins.
 # Common Widgets
 
 - QPushButton: A clickable button (e.g., Start, Stop, or Run).
-- QSlider: A horizontal or vertical slider for selecting a value within a range. 
-- QSpinBox: A spin box for numeric input with up/down buttons. 
-- QDoubleSpinBox: Similar to QSpinBox but supports floating-point numbers. 
-- QLabel: A label to display text, images, or other static content. 
-- QLineEdit: A single-line text input box. 
+- QSlider: A horizontal or vertical slider for selecting a value within a range.
+- QSpinBox: A spin box for numeric input with up/down buttons.
+- QDoubleSpinBox: Similar to QSpinBox but supports floating-point numbers.
+- QLabel: A label to display text, images, or other static content.
+- QLineEdit: A single-line text input box.
 - QTextEdit: A multi-line text box for editing/displaying text
-- QPlainTextEdit: Similar to QTextEdit, optimized for plain text (faster for large text). 
-- QComboBox: A dropdown list for selecting one item from multiple options. 
-- QCheckBox: A checkbox for toggling a boolean option (checked/unchecked). 
-- QRadioButton: A radio button for selecting one option in a group. 
+- QPlainTextEdit: Similar to QTextEdit, optimized for plain text (faster for large text).
+- QComboBox: A dropdown list for selecting one item from multiple options.
+- QCheckBox: A checkbox for toggling a boolean option (checked/unchecked).
+- QRadioButton: A radio button for selecting one option in a group.
 - QProgressBar: A progress bar to indicate completion of a task.
 
 # Containers and Layouts
 
-- QGroupBox: A container with a title for grouping related widgets. 
-- QTabWidget: A tabbed interface to organize content into separate tabs. 
-- QVBoxLayout / QHBoxLayout: Vertical and horizontal layouts for organizing widgets. 
+- QGroupBox: A container with a title for grouping related widgets.
+- QTabWidget: A tabbed interface to organize content into separate tabs.
+- QVBoxLayout / QHBoxLayout: Vertical and horizontal layouts for organizing widgets.
 - QStackedWidget: A stack of widgets where only one is visible at a time.
 - QScrollArea
 
@@ -75,7 +75,7 @@ Toolkit to handle  QWidgets for Napari Plugins.
         Note: QColorDialog is a dialog; QColorButton is custom (Napari-specific).
 - QFileDialog: A dialog to select files or directories (can be embedded into a plugin).
 - QListWidget: A list widget to display and select items.
-- QTreeWidget: A tree structure for hierarchical data. 
+- QTreeWidget: A tree structure for hierarchical data.
 - QTableWidget: A table/grid for displaying tabular data.
 - QDateTimeEdit: Input for date and time values.
 

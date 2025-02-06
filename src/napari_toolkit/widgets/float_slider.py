@@ -1,7 +1,6 @@
-from qtpy.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QSlider, QLineEdit, QPushButton
-from qtpy.QtCore import Qt, Signal
-from napari_plugin_engine import napari_hook_implementation
 import numpy as np
+from qtpy.QtCore import Signal
+from qtpy.QtWidgets import QSlider
 
 
 class QFloatSlider(QSlider):
@@ -13,15 +12,10 @@ class QFloatSlider(QSlider):
         super().__init__(parent)
         self.digits = digits
         self.digit_factor = 10**digits
-        #
-        # self.min_value = min_value
-        # self.max_value = max_value
-        # self.setMinimum(0)
-        # self.setMaximum()
-        #
-        #
-        # self.setMaximum(int((max_value - min_value) / step))
-        # self.valueChanged.connect(self.emit_float_value)
+
+    def setTickInterval(self, value):
+        value = int(np.round(value, self.digits) * self.digit_factor)
+        super().setTickInterval(value)
 
     def setMaximum(self, value):
         value = int(np.round(value, self.digits) * self.digit_factor)

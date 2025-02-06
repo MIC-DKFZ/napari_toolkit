@@ -1,6 +1,7 @@
-from napari_toolkit.widgets.float_slider import QFloatSlider, QHBoxLayout
-from qtpy.QtWidgets import QSlider, QLabel, QWidget, QSizePolicy
 from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QLabel, QSlider, QWidget
+
+from napari_toolkit.widgets.float_slider import QFloatSlider, QHBoxLayout
 
 
 class _QLabelSlider(QWidget):
@@ -36,6 +37,7 @@ class QLabelSlider(_QLabelSlider):
         layout.addWidget(self.slider, stretch=10)
         layout.addWidget(self.label, stretch=1)
 
+        layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout)
 
         self.slider.valueChanged.connect(self.update_label)
@@ -57,6 +59,7 @@ class QFloatLabelSlider(_QLabelSlider):
         layout.addWidget(self.slider, stretch=10)
         layout.addWidget(self.label, stretch=1)
 
+        layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout)
 
         self.slider.valueChanged.connect(self.update_label)

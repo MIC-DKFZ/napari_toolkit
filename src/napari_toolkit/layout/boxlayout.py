@@ -1,5 +1,4 @@
-import numpy as np
-from qtpy.QtWidgets import QGroupBox, QHBoxLayout, QVBoxLayout, QWidget
+from qtpy.QtWidgets import QHBoxLayout, QVBoxLayout
 
 
 def stack(boxlayout, widgets, stretch=None):

@@ -1,31 +1,13 @@
 # flake8: noqa: E202, E231, E702
-from napari.layers import Layer
-from napari.viewer import Viewer
-from qtpy.QtGui import QFont, QIcon, QKeySequence
+from napari.resources import get_icon_path
+from PyQt5.QtWidgets import QGroupBox
 from qtpy.QtWidgets import (
     QGroupBox,
-    QVBoxLayout,
     QHBoxLayout,
-    QLabel,
     QSizePolicy,
-    QScrollArea,
+    QVBoxLayout,
     QWidget,
-    QSpacerItem,
-    QApplication,
-    QMainWindow,
 )
-
-from qtpy.QtCore import QTemporaryFile, QPropertyAnimation, QEasingCurve, QAbstractAnimation
-from napari._qt.qt_resources import QColoredSVGIcon
-from qtpy.QtCore import QSize
-from qtpy.QtWidgets import QApplication, QGroupBox, QVBoxLayout, QPushButton, QSlider
-from qtpy.QtGui import QIcon, QPixmap, QPainter, QColor
-from PyQt5.QtGui import QPixmap, QIcon
-from PyQt5.QtWidgets import QGroupBox
-
-from PyQt5.QtWidgets import QGroupBox, QStyle, QStyleOptionGroupBox
-from PyQt5.QtGui import QIcon, QPainter
-from napari.resources import get_icon_path
 
 
 class QCollabsableGroupBox(QGroupBox):
@@ -65,7 +47,7 @@ def add_collabsgroupbox(layout=None, text="", collabsed=False) -> QGroupBox:
     if layout is not None:
         layout.addWidget(_widget)
     _widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-    _widget.setChecked(collabsed)
+    _widget.setChecked(not collabsed)
     return _widget
 
 

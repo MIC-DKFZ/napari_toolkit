@@ -1,7 +1,4 @@
-from napari.layers import Layer
-from napari.viewer import Viewer
-from qtpy.QtGui import QFont, QIcon, QKeySequence
-from qtpy.QtWidgets import QGroupBox, QHBoxLayout, QVBoxLayout, QWidget, QSizePolicy
+from qtpy.QtWidgets import QGroupBox, QHBoxLayout, QSizePolicy, QVBoxLayout
 
 
 def add_groupbox(layout=None, text="") -> QGroupBox:
