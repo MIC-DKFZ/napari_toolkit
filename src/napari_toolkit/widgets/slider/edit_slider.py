@@ -1,17 +1,11 @@
 import numpy as np
 from qtpy.QtCore import Qt, Signal
-from qtpy.QtWidgets import (
-    QHBoxLayout,
-    QLineEdit,
-    QPushButton,
-    QSlider,
-    QWidget,
-)
+from qtpy.QtWidgets import QHBoxLayout, QLineEdit, QPushButton, QSlider, QWidget
 
-from napari_toolkit.widgets.float_slider import QFloatSlider
+from napari_toolkit.widgets.slider.float_slider import QFloatSlider
 
 
-class QSliderEdit(QWidget):
+class QEditSlider(QWidget):
     index_changed = Signal()
 
     def __init__(self, parent=None, min_value=0, max_value=100, start_value=0):
@@ -82,7 +76,7 @@ class QSliderEdit(QWidget):
         self.set_value(self.current_value - 1)
 
 
-class QFloatSliderEdit(QWidget):
+class QEditFloatSlider(QWidget):
     index_changed = Signal()
 
     def __init__(self, parent=None, min_value=0, max_value=100, start_value=0, digits=1):

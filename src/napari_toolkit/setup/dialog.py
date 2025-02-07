@@ -36,7 +36,7 @@ def setup_fileselect(
     text: str = "Select",
     read_only: bool = True,
     default_dir: str = None,
-    filter: str = None,
+    filtering: str = None,
     function: Optional[Callable] = None,
     tooltips: Optional[str] = None,
     shortcut: Optional[str] = None,
@@ -45,7 +45,7 @@ def setup_fileselect(
 
     _widget = QFileSelect(
         text=text,
-        filter=filter,
+        filtering=filtering,
         read_only=read_only,
         default_dir=default_dir,
         save_file=False,
@@ -67,7 +67,7 @@ def setup_savefileselect(
     text: str = "Select",
     read_only: bool = True,
     default_dir: str = None,
-    filter: str = None,
+    filtering: str = None,
     function: Optional[Callable] = None,
     tooltips: Optional[str] = None,
     shortcut: Optional[str] = None,
@@ -76,7 +76,7 @@ def setup_savefileselect(
 
     _widget = QFileSelect(
         text=text,
-        filter=filter,
+        filtering=filtering,
         read_only=read_only,
         default_dir=default_dir,
         save_file=True,

@@ -1,7 +1,7 @@
 from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QLabel, QSlider, QWidget
+from qtpy.QtWidgets import QHBoxLayout, QLabel, QSlider, QWidget
 
-from napari_toolkit.widgets.float_slider import QFloatSlider, QHBoxLayout
+from napari_toolkit.widgets.slider.float_slider import QFloatSlider
 
 
 class _QLabelSlider(QWidget):

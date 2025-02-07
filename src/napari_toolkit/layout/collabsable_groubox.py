@@ -1,29 +1,27 @@
 # flake8: noqa: E202, E231, E702
 from napari.resources import get_icon_path
-from PyQt5.QtWidgets import QGroupBox
-from qtpy.QtWidgets import (
-    QGroupBox,
-    QHBoxLayout,
-    QSizePolicy,
-    QVBoxLayout,
-    QWidget,
-)
+from qtpy.QtWidgets import QGroupBox, QHBoxLayout, QSizePolicy, QVBoxLayout, QWidget
 
 
 class QCollabsableGroupBox(QGroupBox):
     def __init__(self, parent=None):
         super().__init__(parent)
+        from pathlib import Path
+
         self.setCheckable(True)
         self.toggled.connect(self.update)
+
+        path_right_arrow = Path(get_icon_path("right_arrow")).as_posix()
+        path_drop_down = Path(get_icon_path("drop_down")).as_posix()
 
         self.setStyleSheet(
             f"""
             QGroupBox::indicator::unchecked {{
-                image: url({get_icon_path('right_arrow')});
+                image: url({path_right_arrow});
                 background: transparent;
             }}
             QGroupBox::indicator::checked {{
-                image: url({get_icon_path('drop_down')});
+                image: url({path_drop_down});
                 background: transparent;
             }}
         """

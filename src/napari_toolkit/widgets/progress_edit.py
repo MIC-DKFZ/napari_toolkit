@@ -1,11 +1,5 @@
 from qtpy.QtCore import Signal
-from qtpy.QtWidgets import (
-    QHBoxLayout,
-    QLineEdit,
-    QProgressBar,
-    QPushButton,
-    QWidget,
-)
+from qtpy.QtWidgets import QHBoxLayout, QLineEdit, QProgressBar, QPushButton, QWidget
 
 
 class QProgressbarEdit(QWidget):

@@ -4,36 +4,36 @@ Toolkit to handle  QWidgets for Napari Plugins.
 
 ----------------------------------
 
-#### Buttons
+#### Buttons - X
 - QPushButton
 - QRadioButton
 - QToggleButton
 
-#### Spinbox
+#### Spinbox - X
 - QSpinBox
 - QDoubleSpinBox
 
-#### Slider
+#### Slider - X
 - QSlider
-- QLabelSlider
-- QSliderEdit
 - QFloatSlider
+- QLabelSlider
 - QFloatLabelSlider
-- QFloatSliderEdit
+- QEditSlider
+- QEditFloatSlider
 
-#### Progressbar
+#### Progressbar - X
 - QProgressBar
 - QProgressbarEdit
 
-#### Text
+#### Text Edit - X
 - QLabel
 - QLineEdit
 - QTextEdit
 - QPlainTextEdit
 
-#### Groupbox
-- QGroupBox
-- QCollapsableGroupBox
+#### Switch - X
+- QVSwitch
+- QHSwitch
 
 #### QComboBox
 - QComboBox
@@ -41,9 +41,14 @@ Toolkit to handle  QWidgets for Napari Plugins.
 #### Checkbox
 - QCheckBox
 
-#### Switch
-- QVSwitch
-- QHSwitch
+#### Colorbar
+- Colorbar
+
+#### Groupbox
+- QGroupBox
+- QCollapsableGroupBox
+
+
 
 
 # Common Widgets

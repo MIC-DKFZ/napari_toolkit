@@ -33,11 +33,9 @@ class QDirSelect(QWidget):
             "Select an Output Directory",
             options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly,
         )
-        if filter != "":
-            self.set_dir(_output_dir)
 
-    def set_dir(self, dir):
-        self.line_edit.setText(f"{dir}")
+    def set_dir(self, directory):
+        self.line_edit.setText(f"{directory}")
 
     def get_dir(self):
         return self.line_edit.text()
@@ -47,7 +45,7 @@ class QFileSelect(QWidget):
     def __init__(
         self,
         parent=None,
-        filter=None,
+        filtering=None,
         text="Select",
         read_only=True,
         default_dir=None,
@@ -57,7 +55,7 @@ class QFileSelect(QWidget):
         super().__init__(parent)
         self.default_dir = default_dir
         self.save_file = save_file
-        self.filter = filter
+        self.filtering = filtering
 
         self._layout = QHBoxLayout()
         self._layout.setContentsMargins(0, 0, 0, 0)
@@ -79,24 +77,24 @@ class QFileSelect(QWidget):
         _dialog.setDirectory(os.getcwd() if self.default_dir is None else self.default_dir)
 
         if self.save_file:
-            _output_file, filter = _dialog.getSaveFileName(
+            _output_file, _filter = _dialog.getSaveFileName(
                 self,
                 "Select File",
-                filter=self.filter,
+                filter=self.filtering,
                 options=QFileDialog.DontUseNativeDialog,
             )
         else:
-            _output_file, filter = _dialog.getOpenFileName(
+            _output_file, _filter = _dialog.getOpenFileName(
                 self,
                 "Select File",
-                filter=self.filter,
+                filter=self.filtering,
                 options=QFileDialog.DontUseNativeDialog,
             )
-        if filter != "":
+        if _filter != "":
             self.set_file(_output_file)
 
-    def set_file(self, dir):
-        self.line_edit.setText(f"{dir}")
+    def set_file(self, directory):
+        self.line_edit.setText(f"{directory}")
 
     def get_file(self):
         return self.line_edit.text()

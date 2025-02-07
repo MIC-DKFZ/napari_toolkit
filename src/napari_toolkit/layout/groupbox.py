@@ -1,7 +1,21 @@
-from qtpy.QtWidgets import QGroupBox, QHBoxLayout, QSizePolicy, QVBoxLayout
+from typing import Optional, Tuple
+
+from qtpy.QtWidgets import QGroupBox, QHBoxLayout, QLayout, QSizePolicy, QVBoxLayout
 
 
-def add_groupbox(layout=None, text="") -> QGroupBox:
+def add_groupbox(layout: Optional[QLayout] = None, text: str = "") -> QGroupBox:
+    """Create a QGroupBox and optionally add it to a given layout.
+
+    The group box expands horizontally but has a fixed height. If a layout is provided,
+    the group box is added to it.
+
+    Args:
+        layout (Optional[QLayout], optional): The layout to which the group box will be added. Defaults to None.
+        text (str, optional): The title of the group box. Defaults to "".
+
+    Returns:
+        QGroupBox: The created group box.
+    """
     _widget = QGroupBox(text)
     if layout is not None:
         layout.addWidget(_widget)
@@ -9,14 +23,36 @@ def add_groupbox(layout=None, text="") -> QGroupBox:
     return _widget
 
 
-def add_hgroupbox(layout=None, text="") -> QGroupBox:
+def add_hgroupbox(layout: Optional[QLayout] = None, text: str = "") -> Tuple[QGroupBox, QLayout]:
+    """Create a QGroupBox with a horizontal layout and optionally add it to a given layout.
+
+    The group box contains a `QHBoxLayout` with predefined margins.
+
+    Args:
+        layout (Optional[QLayout], optional): The layout to which the group box will be added. Defaults to None.
+        text (str, optional): The title of the group box. Defaults to "".
+
+    Returns:
+        Tuple[QGroupBox, QHBoxLayout]: The created group box and its horizontal layout.
+    """
     _widget = add_groupbox(layout=layout, text=text)
     _wlayout = QHBoxLayout(_widget)
     _wlayout.setContentsMargins(10, 10, 10, 10)
     return _widget, _wlayout
 
 
-def add_vgroupbox(layout=None, text="") -> QGroupBox:
+def add_vgroupbox(layout: Optional[QLayout] = None, text: str = "") -> Tuple[QGroupBox, QLayout]:
+    """Create a QGroupBox with a vertical layout and optionally add it to a given layout.
+
+    The group box contains a `QVBoxLayout` with predefined margins.
+
+    Args:
+        layout (Optional[QLayout], optional): The layout to which the group box will be added. Defaults to None.
+        text (str, optional): The title of the group box. Defaults to "".
+
+    Returns:
+        Tuple[QGroupBox, QVBoxLayout]: The created group box and its vertical layout.
+    """
     _widget = add_groupbox(layout=layout, text=text)
     _wlayout = QVBoxLayout(_widget)
     _wlayout.setContentsMargins(10, 10, 10, 10)
