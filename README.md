@@ -1,148 +1,122 @@
-# napari-toolkit
+# Napari Toolkit
 
-Toolkit to handle  QWidgets for Napari Plugins.
+A napari toolkit for handling QWidgets to simplify the development of Napari plugins.
+The toolkit provides enhanced widgets, UI components, and utilities that streamline plugin creation, improve layout management, and enhance user interaction within the Napari ecosystem.
 
-----------------------------------
 
-#### Buttons - X
-- QPushButton
-- QRadioButton
-- QToggleButton
+## Installation
+#### 1. Install `napari_toolkit`
+```shell
+pip install napari_toolkit
+```
+or clone the repository:
+```shell
+git clone <path>
+cd napari_toolkit
+pip install -e ./
+```
+#### 2. (Optional) Initialize your Plugin
+Afterward it is recommended to generate you plugin with [copier] using the [napari-plugin-template].
 
-#### Spinbox - X
-- QSpinBox
-- QDoubleSpinBox
+---
 
-#### Slider - X
-- QSlider
-- QFloatSlider
-- QLabelSlider
-- QFloatLabelSlider
-- QEditSlider
-- QEditFloatSlider
+## Gallery
 
-#### Progressbar - X
-- QProgressBar
-- QProgressbarEdit
+````python
+from napari_toolkit.widget_gallery import show_widget_gallery
+show_widget_gallery()
+````
+<img src="imgs/Gallery.png">
 
-#### Text Edit - X
-- QLabel
-- QLineEdit
-- QTextEdit
-- QPlainTextEdit
+## Widgets
+````python
+from napari_toolkit.widgets import (setup_acknowledgements, setup_checkbox, setup_colorbar,
+                                    setup_colorpicker, setup_combobox, setup_dirselect,
+                                    setup_doubleslider, setup_doublespinbox, setup_editcolorpicker,
+                                    setup_editdoubleslider, setup_editslider, setup_fileselect,
+                                    setup_hswitch, setup_icon_wrapper, setup_iconbutton,
+                                    setup_label, setup_labeleddoubleslider, setup_labeledslider,
+                                    setup_layerselect, setup_lineedit, setup_plaintextedit,
+                                    setup_progressbar, setup_progressbaredit, setup_pushbutton,
+                                    setup_radiobutton, setup_savefileselect, setup_slider,
+                                    setup_spinbox, setup_textedit, setup_timeedit,
+                                    setup_togglebutton, setup_vswitch)
+````
 
-#### Switch - X
-- QVSwitch
-- QHSwitch
-
+#### Buttons
+- ``QPushButton``: A standard clickable button that can trigger an action.
+- ``QRadioButton``: A radio button for selecting one option in a group.
+- ``QToggleButton``: A clickable button that toggles between an "on" and "off" state.
+- ``IconButton``: A QPushButton with an Icon.
+#### Spinbox
+- ``QSpinBox``: A numerical input field allowing integer selection with up/down arrows.
+- ``QDoubleSpinBox``: A spinbox similar to QSpinBox but supports floating-point numbers.
+#### Slider
+- ``QSlider``: A horizontal or vertical slider for selecting an integer value.
+- ``QDoubleSlider``: A slider that supports floating-point values instead of integers.
+- ``QLabeledSlider``: A QSlider combined with a QLabel to display the value.
+- ``QLabeledDoubleSlider``: A QFloatSlider with an accompanying QLabel to show the selected value.
+- ``QEditSlider``: A QSlider paired with an editable text box for precise input.
+- ``QEditDoubleSlider``: A QFloatSlider paired with an editable text box for precise input.
+#### Progressbar
+- ``QProgressBar``: A visual progress indicator that displays completion percentage.
+- ``QProgressbarEdit``: A QProgressBar with an editable field for manual updates.
+#### Text Edit
+- ``QLabel``: A non-editable text display widget.
+- ``QLineEdit``: A single-line text input field.
+- ``QTextEdit``: A multi-line text editor with rich-text support
+- ``QPlainTextEdit``: A multi-line text editor optimized for plain text input.
+#### Switch
+- ``QVSwitch``: A vertical switch that toggles between multiple states.
+- ``QHSwitch``: A horizontal switch that toggles between multiple states.
 #### QComboBox
-- QComboBox
-
+- ``QComboBox``: A dropdown menu for selecting one option from a list.
 #### Checkbox
-- QCheckBox
+- ``QCheckBox``: A selectable box that toggles between checked and unchecked states.
+#### Color
+- ``Colorbar``: A widget displaying a colorbar.
+- ``QColorPicker``: A dialog for selecting colors.
+- ``QEditColorPicker``:A dialog for selecting colors, combined with a textfield and slider for changing efficiently rgba values.
+#### QLayerSelect
+- `` QLayerSelect``: A dropdown or list for selecting a specific layer type (Labels, Images,...) in the Napari Viewer.
+#### File/Dir Select
+- ``QFileSelect``: A file selection dialog to choose a file.
+- ``QFileSelect(save directory)``: A file selection dialog specifically for saving directories.
+- ``QDirSelect``: A directory selection dialog.
+#### QTimeEdit
+- ``QDateTimeEdit``: A widget for selecting and editing date and time values.
+## Containers
+````python
+from napari_toolkit.containers import (setup_hgroupbox, setup_scrollarea, setup_tabwidget,
+                                       setup_vcollapsiblegroupbox)
+````
+- ``QGroupBox``: A container with a title for grouping related widgets.
+- ``QCollapsableGroupBox``: A QGroupBox that can be expanded or collapsed to show/hide content.
+- ``QScrollArea``: A container that allows scrolling when content exceeds available space.
+- ``QTabWidget``: A widget with multiple tabs for organizing content.
+## Data Struct
+````python
+from napari_toolkit.data_structs import setup_list, setup_table, setup_tree
+````
+- ``QListWidget``: A list-based widget that allows displaying and managing a list of items.
+- ``QTableWidget``:  A table-based widget that provides an editable grid of rows and columns, commonly used for structured data representation.
+- ``QTreeWidget``: A hierarchical tree-based widget that enables organizing data in expandable and collapsible parent-child relationships.
 
-#### Colorbar
-- Colorbar
+---
 
-#### Groupbox
-- QGroupBox
-- QCollapsableGroupBox
+## Acknowledgments
 
+<p align="left">
+  <img src="imgs/Logos/HI_Logo.png" width="150"> &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="imgs/Logos/DKFZ_Logo.png" width="500">
+</p>
 
-
-
-# Common Widgets
-
-- QPushButton: A clickable button (e.g., Start, Stop, or Run).
-- QSlider: A horizontal or vertical slider for selecting a value within a range.
-- QSpinBox: A spin box for numeric input with up/down buttons.
-- QDoubleSpinBox: Similar to QSpinBox but supports floating-point numbers.
-- QLabel: A label to display text, images, or other static content.
-- QLineEdit: A single-line text input box.
-- QTextEdit: A multi-line text box for editing/displaying text
-- QPlainTextEdit: Similar to QTextEdit, optimized for plain text (faster for large text).
-- QComboBox: A dropdown list for selecting one item from multiple options.
-- QCheckBox: A checkbox for toggling a boolean option (checked/unchecked).
-- QRadioButton: A radio button for selecting one option in a group.
-- QProgressBar: A progress bar to indicate completion of a task.
-
-# Containers and Layouts
-
-- QGroupBox: A container with a title for grouping related widgets.
-- QTabWidget: A tabbed interface to organize content into separate tabs.
-- QVBoxLayout / QHBoxLayout: Vertical and horizontal layouts for organizing widgets.
-- QStackedWidget: A stack of widgets where only one is visible at a time.
-- QScrollArea
-
-# Advanced Input Widgets
-
-- QColorDialog / QColorButton: Widgets for selecting colors.
-        Note: QColorDialog is a dialog; QColorButton is custom (Napari-specific).
-- QFileDialog: A dialog to select files or directories (can be embedded into a plugin).
-- QListWidget: A list widget to display and select items.
-- QTreeWidget: A tree structure for hierarchical data.
-- QTableWidget: A table/grid for displaying tabular data.
-- QDateTimeEdit: Input for date and time values.
-
-# Custom
-- QLayerSelect
-- QHSwitch
-- QVSwitch
-- QFloatSlider
-- QFloatLabelSlider
-- QLabelSlider
-- QCollapsableGroupBox
-
-
-----------------------------------
-
-
+This repository is developed and maintained by the Applied Computer Vision Lab (ACVL)
+of [Helmholtz Imaging](https://www.helmholtz-imaging.de/).
 
 This [napari] plugin was generated with [copier] using the [napari-plugin-template].
 
-<!--
-Don't miss the full getting started guide to set up your new package:
-https://github.com/napari/napari-plugin-template#getting-started
 
-and review the napari docs for plugin developers:
-https://napari.org/stable/plugins/index.html
--->
-
-## Installation
-
-You can install `napari-toolkit` via [pip]:
-
-    pip install napari-toolkit
-
-
-
-
-## Contributing
-
-Contributions are very welcome. Tests can be run with [tox], please ensure
-the coverage at least stays the same before you submit a pull request.
-
-## License
-
-Distributed under the terms of the [Apache Software License 2.0] license,
-"napari-toolkit" is free and open source software
-
-## Issues
-
-If you encounter any problems, please [file an issue] along with a detailed description.
-
-[napari]: https://github.com/napari/napari
 [copier]: https://copier.readthedocs.io/en/stable/
-[@napari]: https://github.com/napari
-[MIT]: http://opensource.org/licenses/MIT
-[BSD-3]: http://opensource.org/licenses/BSD-3-Clause
-[GNU GPL v3.0]: http://www.gnu.org/licenses/gpl-3.0.txt
-[GNU LGPL v3.0]: http://www.gnu.org/licenses/lgpl-3.0.txt
-[Apache Software License 2.0]: http://www.apache.org/licenses/LICENSE-2.0
-[Mozilla Public License 2.0]: https://www.mozilla.org/media/MPL/2.0/index.txt
-[napari-plugin-template]: https://github.com/napari/napari-plugin-template
-
 [napari]: https://github.com/napari/napari
-[tox]: https://tox.readthedocs.io/en/latest/
-[pip]: https://pypi.org/project/pip/
-[PyPI]: https://pypi.org/
+[napari-plugin-template]: https://github.com/napari/napari-plugin-template
