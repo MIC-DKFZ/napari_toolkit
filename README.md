@@ -11,7 +11,7 @@ pip install napari_toolkit
 ```
 or clone the repository:
 ```shell
-git clone <path>
+git clone <url>
 cd napari_toolkit
 pip install -e ./
 ```

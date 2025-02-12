@@ -26,6 +26,9 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = [
     "numpy",
+    "napari[all]",
+    "qtpy",
+    "matplotlib",
 ]
 
 [project.optional-dependencies]
