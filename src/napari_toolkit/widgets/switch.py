@@ -82,6 +82,23 @@ class _QSwitch(QWidget):
         if self.index is not None:
             self.buttons[self.index].setStyleSheet(f"background-color: {self.highlight_color};")
 
+    def currentText(self):
+        return self.buttons[self.index].text()
+
+    def currentIndex(self):
+        return self.index
+
+    def setCurrentIndex(self, value):
+        self._uncheck()
+        self._check(value)
+        self.clicked.emit()
+
+    def findText(self, value):
+        try:
+            return self.options.index(value)
+        except ValueError:
+            return -1
+
 
 class QHSwitch(_QSwitch):
     """

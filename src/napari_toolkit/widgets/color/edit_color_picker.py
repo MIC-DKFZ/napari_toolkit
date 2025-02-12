@@ -89,7 +89,7 @@ class QEditColorPicker(QWidget):
         """
         return self.colorpicker.get_color()
 
-    def get_rgba(self):
+    def get_color(self):
         """Gets the current RGBA color, including opacity.
 
         Returns:
@@ -104,6 +104,21 @@ class QEditColorPicker(QWidget):
             float: The selected opacity (0-1).
         """
         return self.oppacity_slider.current_value
+
+    def set_color(self, color: Tuple[int, int, int]) -> None:
+        """Sets the button color to the specified RGB value.
+
+        Args:
+            color (Tuple[int, int, int]): The new RGB color.
+        """
+        if len(color) == 4:
+            self.set_oppacity(color[3])
+            color = color[:3]
+        self.colorpicker.set_color(color)
+        self.update_lineedit()
+
+    def set_oppacity(self, oppacity: float) -> None:
+        self.oppacity_slider.setValue(oppacity)
 
 
 def setup_editcolorpicker(

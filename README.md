@@ -102,6 +102,22 @@ from napari_toolkit.data_structs import setup_list, setup_table, setup_tree
 - ``QTableWidget``:  A table-based widget that provides an editable grid of rows and columns, commonly used for structured data representation.
 - ``QTreeWidget``: A hierarchical tree-based widget that enables organizing data in expandable and collapsible parent-child relationships.
 
+
+---
+
+## Widget Value Handling
+
+Easily get and set values for QWidgets in your Napari plugin.
+**Note:** These functions work for many widgets but are not guaranteed to support all
+
+````python
+from napari_toolkit.utils.widget_getter import get_value
+from napari_toolkit.utils.widget_setter import set_value
+
+set_value(<QWidget>,<value>)        # Sets the value of widget
+_ = get_value(<QWidget>,<value>)    # Retrieves the value of a widget
+````
+
 ---
 
 ## Acknowledgments

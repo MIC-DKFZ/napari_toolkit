@@ -1,8 +1,15 @@
 import os
 from typing import Callable, Optional
 
-from qtpy.QtWidgets import (QFileDialog, QHBoxLayout, QLayout, QLineEdit, QPushButton, QSizePolicy,
-                            QWidget)
+from qtpy.QtWidgets import (
+    QFileDialog,
+    QHBoxLayout,
+    QLayout,
+    QLineEdit,
+    QPushButton,
+    QSizePolicy,
+    QWidget,
+)
 
 from napari_toolkit.utils.utils import connect_widget
 
@@ -139,17 +146,11 @@ class QFileSelect(QWidget):
 
         if self.save_file:
             _output_file, _filter = _dialog.getSaveFileName(
-                self,
-                "Select File",
-                filter=self.filtering,
-                options=QFileDialog.DontUseNativeDialog,
+                self, "Select File", filter=self.filtering, options=QFileDialog.DontUseNativeDialog
             )
         else:
             _output_file, _filter = _dialog.getOpenFileName(
-                self,
-                "Select File",
-                filter=self.filtering,
-                options=QFileDialog.DontUseNativeDialog,
+                self, "Select File", filter=self.filtering, options=QFileDialog.DontUseNativeDialog
             )
         if _filter != "":
             self.set_file(_output_file)
@@ -252,11 +253,7 @@ def setup_savefileselect(
         QWidget: The initialized `QFileSelect` widget for saving files.
     """
     _widget = QFileSelect(
-        text=text,
-        filtering=filtering,
-        read_only=read_only,
-        default_dir=default_dir,
-        save_file=True,
+        text=text, filtering=filtering, read_only=read_only, default_dir=default_dir, save_file=True
     )
     _widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 

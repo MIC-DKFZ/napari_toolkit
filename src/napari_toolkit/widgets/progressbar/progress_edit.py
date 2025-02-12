@@ -82,11 +82,11 @@ class QProgressbarEdit(QWidget):
 
         try:
             value = int(self.line_edit.text())
-            self.set_value(value)
+            self.setValue(value)
         except ValueError:
             pass
 
-    def set_value(self, value: int) -> None:
+    def setValue(self, value: int) -> None:
         """Sets the progress bar and line edit to a new value.
 
         Ensures the value is within the allowed range before updating.
@@ -102,11 +102,14 @@ class QProgressbarEdit(QWidget):
 
     def increment_value(self) -> None:
         """Increments the progress bar value by 1."""
-        self.set_value(self.current_value + 1)
+        self.setValue(self.current_value + 1)
 
     def decrement_value(self) -> None:
         """Decrements the progress bar value by 1."""
-        self.set_value(self.current_value - 1)
+        self.setValue(self.current_value - 1)
+
+    def value(self) -> int:
+        return self.current_value
 
 
 def setup_progressbaredit(

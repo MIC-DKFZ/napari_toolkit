@@ -36,6 +36,7 @@ testing = [
     "tox",
     "pytest",  # https://docs.pytest.org/en/latest/contents.html
     "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
+    "pytest-qt",
 ]
 
 [build-system]
@@ -60,6 +61,7 @@ line-length = 100
 target-version = ['py38', 'py39', 'py310']
 
 [tool.isort]
+profile = "black"
 line_length = 100
 
 [tool.ruff]

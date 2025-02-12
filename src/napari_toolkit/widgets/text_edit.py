@@ -1,7 +1,14 @@
 from typing import Callable, Optional
 
-from qtpy.QtWidgets import (QLabel, QLayout, QLineEdit, QPlainTextEdit, QSizePolicy, QTextEdit,
-                            QWidget)
+from qtpy.QtWidgets import (
+    QLabel,
+    QLayout,
+    QLineEdit,
+    QPlainTextEdit,
+    QSizePolicy,
+    QTextEdit,
+    QWidget,
+)
 
 from napari_toolkit.utils.utils import connect_widget
 

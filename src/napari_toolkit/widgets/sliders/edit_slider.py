@@ -100,11 +100,11 @@ class QEditSlider(QWidget):
 
         try:
             value = int(self.line_edit.text())
-            self.set_value(value)
+            self.setValue(value)
         except ValueError:
             pass
 
-    def set_value(self, value: int) -> None:
+    def setValue(self, value: int) -> None:
         """Sets the slider and line edit to a new value.
 
         Ensures the value is within the allowed range before updating.
@@ -120,11 +120,14 @@ class QEditSlider(QWidget):
 
     def increment_value(self) -> None:
         """Increments the slider value by 1."""
-        self.set_value(self.current_value + 1)
+        self.setValue(self.current_value + 1)
 
     def decrement_value(self) -> None:
         """Decrements the slider value by 1."""
-        self.set_value(self.current_value - 1)
+        self.setValue(self.current_value - 1)
+
+    def value(self):
+        return self.current_value
 
 
 class QEditDoubleSlider(QWidget):
@@ -231,7 +234,7 @@ class QEditDoubleSlider(QWidget):
         except ValueError:
             pass
 
-    def set_value(self, value: float) -> None:
+    def setValue(self, value: float) -> None:
         """Sets the slider and line edit to a new value.
 
         Ensures the value is within the allowed range before updating.
@@ -248,11 +251,14 @@ class QEditDoubleSlider(QWidget):
 
     def increment_value(self) -> None:
         """Increments the slider value by the smallest allowed step."""
-        self.set_value(self.current_value + 10 ** (-self.digits))
+        self.setValue(self.current_value + 10 ** (-self.digits))
 
     def decrement_value(self) -> None:
         """Decrements the slider value by the smallest allowed step."""
-        self.set_value(self.current_value - 10 ** (-self.digits))
+        self.setValue(self.current_value - 10 ** (-self.digits))
+
+    def value(self):
+        return self.current_value
 
 
 def setup_editslider(

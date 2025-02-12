@@ -6,20 +6,47 @@ from napari.viewer import Viewer
 from qtpy.QtCore import Qt
 from qtpy.QtWidgets import QHBoxLayout, QLabel, QSizePolicy, QTreeWidgetItem, QVBoxLayout, QWidget
 
-from napari_toolkit.containers import (setup_hgroupbox, setup_scrollarea, setup_tabwidget,
-                                       setup_vcollapsiblegroupbox)
+from napari_toolkit.containers import (
+    setup_hgroupbox,
+    setup_scrollarea,
+    setup_tabwidget,
+    setup_vcollapsiblegroupbox,
+)
 from napari_toolkit.data_structs import setup_list, setup_table, setup_tree
-from napari_toolkit.widgets import (setup_acknowledgements, setup_checkbox, setup_colorbar,
-                                    setup_colorpicker, setup_combobox, setup_dirselect,
-                                    setup_doubleslider, setup_doublespinbox, setup_editcolorpicker,
-                                    setup_editdoubleslider, setup_editslider, setup_fileselect,
-                                    setup_hswitch, setup_icon_wrapper, setup_iconbutton,
-                                    setup_label, setup_labeleddoubleslider, setup_labeledslider,
-                                    setup_layerselect, setup_lineedit, setup_plaintextedit,
-                                    setup_progressbar, setup_progressbaredit, setup_pushbutton,
-                                    setup_radiobutton, setup_savefileselect, setup_slider,
-                                    setup_spinbox, setup_textedit, setup_timeedit,
-                                    setup_togglebutton, setup_vswitch)
+from napari_toolkit.widgets import (
+    setup_acknowledgements,
+    setup_checkbox,
+    setup_colorbar,
+    setup_colorpicker,
+    setup_combobox,
+    setup_dirselect,
+    setup_doubleslider,
+    setup_doublespinbox,
+    setup_editcolorpicker,
+    setup_editdoubleslider,
+    setup_editslider,
+    setup_fileselect,
+    setup_hswitch,
+    setup_icon_wrapper,
+    setup_iconbutton,
+    setup_label,
+    setup_labeleddoubleslider,
+    setup_labeledslider,
+    setup_layerselect,
+    setup_lineedit,
+    setup_plaintextedit,
+    setup_progressbar,
+    setup_progressbaredit,
+    setup_pushbutton,
+    setup_radiobutton,
+    setup_savefileselect,
+    setup_slider,
+    setup_spinbox,
+    setup_textedit,
+    setup_timeedit,
+    setup_togglebutton,
+    setup_vswitch,
+)
 
 
 class GalleryWidget(QWidget):
@@ -64,10 +91,7 @@ class GalleryWidget(QWidget):
         _layout.setAlignment(Qt.AlignTop)
 
         # GROUPBOX
-        _, _ = setup_hgroupbox(
-            _layout,
-            "QGroupBox",
-        )
+        _, _ = setup_hgroupbox(_layout, "QGroupBox")
         _, _ = setup_vcollapsiblegroupbox(_layout, "QCollapsibleGroupBox", False)
         _, _ = setup_vcollapsiblegroupbox(_layout, "QCollapsibleGroupBox", True)
 
@@ -294,11 +318,7 @@ class GalleryWidget(QWidget):
         _ = setup_label(layout_ds, "QListWidget")
         _ = setup_list(layout_ds, ["A", "B", "C"], True, function=lambda: print("QListWidget"))
         _ = setup_label(layout_ds, "QTreeWidget")
-        _tree = setup_tree(
-            layout_ds,
-            ["Name", "Value"],
-            function=lambda: print("QTreeWidget"),
-        )
+        _tree = setup_tree(layout_ds, ["Name", "Value"], function=lambda: print("QTreeWidget"))
         t1 = QTreeWidgetItem(_tree, ["Parent Item", "10"])
         _ = QTreeWidgetItem(t1, ["Child 1", "20"])
         _ = QTreeWidgetItem(t1, ["Child 2", "30"])
