@@ -38,5 +38,6 @@ def connect_widget(
     if tooltips:
         widget.setToolTip(tooltips)
 
-    layout.addWidget(widget, stretch=stretch)
+    if layout is not None:
+        layout.addWidget(widget, stretch=stretch)
     return widget

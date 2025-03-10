@@ -36,7 +36,7 @@ def setup_combobox(
 
     if placeholder is not None:
         _widget.setPlaceholderText(placeholder)
-
+    _widget.setSizeAdjustPolicy(QComboBox.AdjustToMinimumContentsLength)
     return connect_widget(
         layout,
         _widget,

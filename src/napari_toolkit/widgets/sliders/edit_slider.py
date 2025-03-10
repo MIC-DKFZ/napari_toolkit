@@ -230,7 +230,7 @@ class QEditDoubleSlider(QWidget):
         """Updates the slider value when a new value is entered in the line edit."""
         try:
             value = float(self.line_edit.text())
-            self.set_value(value)
+            self.setValue(value)
         except ValueError:
             pass
 
