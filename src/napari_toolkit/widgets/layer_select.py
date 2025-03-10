@@ -95,6 +95,7 @@ def setup_layerselect(
     function: Optional[Callable[[str], None]] = None,
     tooltips: Optional[str] = None,
     shortcut: Optional[str] = None,
+    stretch: int = 1,
 ) -> QWidget:
     """
     Adds a LayerSelectionWidget to a layout with optional configurations, including connecting
@@ -107,6 +108,7 @@ def setup_layerselect(
         function (Optional[Callable[[str], None]], optional): The function to call when the selection changes.
         tooltips (Optional[str], optional): Tooltip text for the widget. Defaults to None.
         shortcut (Optional[str], optional): A keyboard shortcut to trigger the function. Defaults to None.
+        stretch (int, optional): The stretch factor for the spinbox in the layout. Defaults to 1.
 
     Returns:
         QWidget: The configured LayerSelectionWidget added to the layout.
@@ -122,4 +124,5 @@ def setup_layerselect(
         function=function,
         shortcut=shortcut,
         tooltips=tooltips,
+        stretch=stretch,
     )

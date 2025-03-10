@@ -45,14 +45,13 @@ class QIconUpdater(QObject):
         self.widget.setIcon(updated_icon)
 
 
-def setup_icon(_widget: QWidget, icon_name: str, theme: str = "dark", size: int = 24) -> QIcon:
+def setup_icon(_widget: QWidget, icon_name: str, theme: str = "dark") -> QIcon:
     """Sets up an icon for a widget, including dynamic color updates.
 
     Args:
         _widget (QWidget): The widget to set up the icon for.
         icon_name (str): The resource name of the icon.
         theme (str, optional): The theme to use for the icon ("dark" or "light"). Defaults to "dark".
-        size (int, optional): The size of the icon in pixels. Defaults to 24.
 
     Returns:
         QIcon: The configured icon for the widget.
@@ -61,13 +60,14 @@ def setup_icon(_widget: QWidget, icon_name: str, theme: str = "dark", size: int 
     _icon = QColoredSVGIcon.from_resources(icon_name)
     _icon = _icon.colored(theme=theme)
     _widget.setIcon(_icon)
+
     size = _widget.sizeHint().height()
 
     _widget.installEventFilter(QIconUpdater(_widget, _icon, theme=theme))
     _widget.setIconSize(QSize(size, size))
     _widget.setFixedHeight(size + 1)
 
-    return _icon
+    return _widget
 
 
 def setup_iconbutton(

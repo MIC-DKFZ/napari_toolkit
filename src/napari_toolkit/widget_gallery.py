@@ -99,6 +99,7 @@ class GalleryWidget(QWidget):
         groub_scr, layout_scr = setup_vcollapsiblegroupbox(_layout, "QScrollArea", False)
         label = QLabel("This is a long text.\n" * 20)
         label.setFixedWidth(200)
+
         _ = setup_scrollarea(layout_scr, widgets=label, max_height=200)
 
         # TABWIDGET

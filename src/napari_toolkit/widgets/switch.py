@@ -1,4 +1,4 @@
-from typing import Callable, List, Optional
+from typing import Any, Callable, List, Optional
 
 from qtpy.QtCore import Signal
 from qtpy.QtGui import QKeySequence
@@ -13,8 +13,10 @@ class _QSwitch(QWidget):
 
     clicked = Signal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, fixed_color=None):
         super().__init__(parent)
+        self.fixed_color = fixed_color
+
         self.buttons = []
         self.options = []
         self.value = None
@@ -74,8 +76,11 @@ class _QSwitch(QWidget):
         self._on_button_pressed(idx)
 
     def set_color(self):
-        theme_colors = get_theme_colors()
-        self.highlight_color = theme_colors.highlight
+        if self.fixed_color is not None:
+            self.highlight_color = self.fixed_color
+        else:
+            theme_colors = get_theme_colors()
+            self.highlight_color = theme_colors.highlight
 
     def on_theme_change(self, *args, **kwargs):
         self.set_color()
@@ -111,9 +116,9 @@ class QHSwitch(_QSwitch):
         shortcuts (Optional[List[str]], optional): List of keyboard shortcuts for each option. Defaults to None.
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, fixed_color=None):
         self._layout = QHBoxLayout()
-        super().__init__(parent)
+        super().__init__(parent, fixed_color)
 
 
 class QVSwitch(_QSwitch):
@@ -127,9 +132,9 @@ class QVSwitch(_QSwitch):
         shortcuts (Optional[List[str]], optional): List of keyboard shortcuts for each option. Defaults to None.
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, fixed_color=None):
         self._layout = QVBoxLayout()
-        super().__init__(parent)
+        super().__init__(parent, fixed_color)
 
 
 def _setup_switch(
@@ -140,6 +145,7 @@ def _setup_switch(
     default: Optional[int] = None,
     shortcut: Optional[str] = None,
     tooltips: Optional[str] = None,
+    stretch: int = 1,
 ) -> QWidget:
     """Configure a switch-like widget, set options, and add it to a layout.
 
@@ -156,6 +162,7 @@ def _setup_switch(
         default (Optional[int], optional): The index of the default selected option. Defaults to None.
         shortcut (Optional[str], optional): A keyboard shortcut to toggle the switch. Defaults to None.
         tooltips (Optional[str], optional): Tooltip text for the widget. Defaults to None.
+        stretch (int, optional): The stretch factor for the spinbox in the layout. Defaults to 1.
 
     Returns:
         QWidget: The configured switch widget added to the layout.
@@ -176,6 +183,7 @@ def _setup_switch(
         function=function,
         shortcut=None,
         tooltips=tooltips,
+        stretch=stretch,
     )
 
 
@@ -184,8 +192,10 @@ def setup_vswitch(
     options: List[str],
     function: Optional[Callable[[str], None]] = None,
     default: int = None,
+    fixed_color: Optional[Any] = None,
     shortcut: Optional[str] = None,
     tooltips: Optional[str] = None,
+    stretch: int = 1,
 ):
     """Create a vertical switch widget (QVSwitch), configure it, and add it to a layout.
 
@@ -198,14 +208,15 @@ def setup_vswitch(
         options (List[str]): A list of string options for the switch widget.
         function (Optional[Callable[[str], None]], optional): A callback function that takes the selected option as an argument. Defaults to None.
         default (Optional[int], optional): The index of the default selected option. Defaults to None.
+        fixed_color: Optiona[Any]: qt Color information. If given this oneis used, else the theme color.
         shortcut (Optional[str], optional): A keyboard shortcut to toggle the switch. Defaults to None.
         tooltips (Optional[str], optional): Tooltip text for the widget. Defaults to None.
-
+        stretch (int, optional): The stretch factor for the spinbox in the layout. Defaults to 1.
     Returns:
         QWidget: The configured QVSwitch widget added to the layout.
     """
-    _widget = QVSwitch()
-    return _setup_switch(_widget, layout, options, function, default, shortcut, tooltips)
+    _widget = QVSwitch(fixed_color=fixed_color)
+    return _setup_switch(_widget, layout, options, function, default, shortcut, tooltips, stretch)
 
 
 def setup_hswitch(
@@ -213,8 +224,10 @@ def setup_hswitch(
     options: List[str],
     function: Optional[Callable[[str], None]] = None,
     default: int = None,
+    fixed_color: Optional[Any] = None,
     shortcut: Optional[str] = None,
     tooltips: Optional[str] = None,
+    stretch: int = 1,
 ):
     """Create a horizontal switch widget (QHSwitch), configure it, and add it to a layout.
 
@@ -227,11 +240,13 @@ def setup_hswitch(
         options (List[str]): A list of string options for the switch widget.
         function (Optional[Callable[[str], None]], optional): A callback function that takes the selected option as an argument. Defaults to None.
         default (Optional[int], optional): The index of the default selected option. Defaults to None.
+        If given this oneis used, else the theme color
         shortcut (Optional[str], optional): A keyboard shortcut to toggle the switch. Defaults to None.
         tooltips (Optional[str], optional): Tooltip text for the widget. Defaults to None.
+        stretch (int, optional): The stretch factor for the spinbox in the layout. Defaults to 1.
 
     Returns:
         QWidget: The configured QHSwitch widget added to the layout.
     """
-    _widget = QHSwitch()
-    return _setup_switch(_widget, layout, options, function, default, shortcut, tooltips)
+    _widget = QHSwitch(fixed_color=fixed_color)
+    return _setup_switch(_widget, layout, options, function, default, shortcut, tooltips, stretch)
