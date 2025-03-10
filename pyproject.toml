@@ -48,6 +48,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "*" = ["*.yaml"]
+napari_toolkit = ["resources/*.png"]
 
 [project.urls]
 Homepage = "https://github.com/MIC-DKFZ/napari_toolkit"

@@ -7,11 +7,11 @@ The toolkit provides enhanced widgets, UI components, and utilities that streaml
 ## Installation
 #### 1. Install `napari_toolkit`
 ```shell
-pip install napari_toolkit
+pip install napari-toolkit
 ```
 or clone the repository:
 ```shell
-git clone <url>
+git clone https://github.com/MIC-DKFZ/napari_toolkit.git
 cd napari_toolkit
 pip install -e ./
 ```
