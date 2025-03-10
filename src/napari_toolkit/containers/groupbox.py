@@ -1,6 +1,6 @@
 from typing import Optional, Tuple
 
-from qtpy.QtWidgets import QGroupBox, QHBoxLayout, QLayout, QSizePolicy, QVBoxLayout
+from qtpy.QtWidgets import QBoxLayout, QGroupBox, QHBoxLayout, QLayout, QSizePolicy, QVBoxLayout
 
 
 def setup_groupbox(layout: Optional[QLayout] = None, text: str = "") -> QGroupBox:
@@ -23,7 +23,9 @@ def setup_groupbox(layout: Optional[QLayout] = None, text: str = "") -> QGroupBo
     return _widget
 
 
-def setup_hgroupbox(layout: Optional[QLayout] = None, text: str = "") -> Tuple[QGroupBox, QLayout]:
+def setup_hgroupbox(
+    layout: Optional[QLayout] = None, text: str = ""
+) -> Tuple[QGroupBox, QBoxLayout]:
     """Create a QGroupBox with a horizontal layout and optionally add it to a given layout.
 
     The group box contains a `QHBoxLayout` with predefined margins.
@@ -41,7 +43,9 @@ def setup_hgroupbox(layout: Optional[QLayout] = None, text: str = "") -> Tuple[Q
     return _widget, _wlayout
 
 
-def setup_vgroupbox(layout: Optional[QLayout] = None, text: str = "") -> Tuple[QGroupBox, QLayout]:
+def setup_vgroupbox(
+    layout: Optional[QLayout] = None, text: str = ""
+) -> Tuple[QGroupBox, QBoxLayout]:
     """Create a QGroupBox with a vertical layout and optionally add it to a given layout.
 
     The group box contains a `QVBoxLayout` with predefined margins.

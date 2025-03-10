@@ -4,10 +4,7 @@ dynamic = ["version"]
 description = "Toolkit to handle  QWidgets for Napari Plugins."
 readme = "README.md"
 license = {file = "LICENSE"}
-authors = [
-  {name = "Lars Krämer"},
-  {email = "lars.kraemer@dkfz-heidelberg.de"},
-]
+authors = [{name = "Lars Krämer", email = "lars.kraemer@dkfz-heidelberg.de"}]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Framework :: napari",
@@ -26,7 +23,7 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = [
     "numpy",
-    "napari[all]",
+    "napari[pyqt]",
     "qtpy",
     "matplotlib",
 ]
@@ -52,6 +49,8 @@ where = ["src"]
 [tool.setuptools.package-data]
 "*" = ["*.yaml"]
 
+[project.urls]
+Homepage = "https://github.com/MIC-DKFZ/napari_toolkit"
 
 [tool.setuptools.dynamic]
 version = {attr = "napari_toolkit.__init__.__version__"}
