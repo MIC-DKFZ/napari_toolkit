@@ -116,7 +116,7 @@ def setup_layerselect(
     _widget = QLayerSelect(layer_type=layer_type)
     if viewer:
         _widget.connect(viewer)
-    _widget.setSizeAdjustPolicy(QComboBox.AdjustToMinimumContentsLength)
+    _widget.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon)
     return connect_widget(
         layout,
         _widget,
