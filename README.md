@@ -26,7 +26,7 @@ Afterward it is recommended to generate you plugin with [copier] using the [napa
 from napari_toolkit.widget_gallery import show_widget_gallery
 show_widget_gallery()
 ````
-<img src="imgs/Gallery.png">
+<img src="https://github.com/MIC-DKFZ/napari_toolkit/raw/master/imgs/Gallery.png">
 
 ## Widgets
 ````python
@@ -122,10 +122,12 @@ _ = get_value(<QWidget>,<value>)    # Retrieves the value of a widget
 
 ## Acknowledgments
 
+
 <p align="left">
-  <img src="imgs/Logos/HI_Logo.png" width="150"> &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="imgs/Logos/DKFZ_Logo.png" width="500">
+  <img src="https://github.com/MIC-DKFZ/napari_toolkit/raw/master/imgs/Logos/HI_Logo.png" width="150"> &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/MIC-DKFZ/napari_toolkit/raw/master/imgs/Logos/DKFZ_Logo.png" width="500">
 </p>
+
 
 This repository is developed and maintained by the Applied Computer Vision Lab (ACVL)
 of [Helmholtz Imaging](https://www.helmholtz-imaging.de/).
