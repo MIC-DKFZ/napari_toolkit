@@ -100,6 +100,18 @@ class QProgressbarEdit(QWidget):
             self.progress_bar.setValue(self.current_value)
             self.index_changed.emit()
 
+    def setMinimum(self, value: int) -> None:
+        self.min_value = value
+        self.progress_bar.setMinimum(self.min_value)
+        if self.current_value < self.min_value:
+            self.setValue(self.min_value)
+
+    def setMaximum(self, value: int) -> None:
+        self.max_value = value
+        self.progress_bar.setMaximum(self.max_value)
+        if self.current_value > self.max_value:
+            self.setValue(self.max_value)
+
     def increment_value(self) -> None:
         """Increments the progress bar value by 1."""
         self.setValue(self.current_value + 1)
