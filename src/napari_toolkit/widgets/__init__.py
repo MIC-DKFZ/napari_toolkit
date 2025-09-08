@@ -3,6 +3,7 @@ from .buttons.icon_button import setup_iconbutton
 from .buttons.push_button import setup_pushbutton
 from .buttons.radio_button import setup_radiobutton
 from .buttons.toggle_button import setup_togglebutton
+from .buttons.tool_button import setup_toolbutton
 from .checkbox import setup_checkbox
 from .color.color_picker import setup_colorpicker
 from .color.colorbar import setup_colorbar
@@ -55,4 +56,5 @@ __all__ = [
     "setup_timeedit",
     "setup_icon_wrapper",
     "setup_iconbutton",
+    "setup_toolbutton",
 ]
