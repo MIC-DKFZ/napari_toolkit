@@ -68,6 +68,9 @@ class QDirSelect(QWidget):
             "Select an Output Directory",
             options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly,
         )
+        
+        if _output_dir != "":
+            self.set_dir(_output_dir)
 
     def set_dir(self, directory):
         """Sets the displayed directory in the line edit.
