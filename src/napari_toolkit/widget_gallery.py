@@ -1,7 +1,7 @@
 from typing import Optional
 
 import napari
-from napari.layers import Image, Labels
+from napari.layers import Image, Labels, Shapes
 from napari.viewer import Viewer
 from qtpy.QtCore import Qt
 from qtpy.QtWidgets import QHBoxLayout, QLabel, QSizePolicy, QTreeWidgetItem, QVBoxLayout, QWidget
@@ -247,6 +247,10 @@ class GalleryWidget(QWidget):
         _ = setup_label(layout_ls, "Select an Labels Layer")
         _ = setup_layerselect(
             layout_ls, self._viewer, Labels, function=lambda: print("QLayerSelect")
+        )
+        _ = setup_label(layout_ls, "Select an Labels or Shapes Layer")
+        _ = setup_layerselect(
+            layout_ls, self._viewer, [Labels, Shapes], function=lambda: print("QLayerSelect")
         )
 
         # Colorbar

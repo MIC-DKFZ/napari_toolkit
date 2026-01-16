@@ -1,4 +1,4 @@
-from typing import Callable, Optional
+from typing import Callable, Optional, List, Type, Union
 
 from napari.layers import Layer
 from napari.viewer import Viewer
@@ -6,6 +6,8 @@ from qtpy.QtWidgets import QComboBox, QLayout, QWidget
 
 from napari_toolkit.utils.utils import connect_widget
 
+def _isinstance_of_layer_type(layer, layer_types):
+    return any(isinstance(layer, t) for t in layer_types if t is not None)
 
 class QLayerSelect(QComboBox):
     """
@@ -13,12 +15,16 @@ class QLayerSelect(QComboBox):
 
     Args:
         parent (Optional[QWidget]): The parent widget.
-        layer_type (Optional[Type[Layer]]): A specific Napari layer type to filter by (e.g., Image, Labels).
+        layer_type (Optional[Union[Type[Layer],List[Type[Layer]]]]): One or more Napari layer types to filter by (e.g., Image, Labels).
     """
 
     def __init__(self, parent=None, layer_type=Layer):
         super().__init__(parent)
-        self.layer_type = layer_type
+        # Accept a single type or a list/tuple of types
+        if isinstance(layer_type, (list, tuple)):
+            self.layer_types = tuple(layer_type)
+        else:
+            self.layer_types = (layer_type,)
         self.value = self.currentText()
         self.currentIndexChanged.connect(self.update_tooltip)
         self.update_tooltip()
@@ -26,7 +32,7 @@ class QLayerSelect(QComboBox):
 
     def _update(self, event):
         """
-        Updates the combo box with the names of layers in the viewer that match the specified layer type.
+        Updates the combo box with the names of layers in the viewer that match the specified layer type(s).
 
         Args:
             event: The Napari event triggered by a layer being added or removed.
@@ -38,7 +44,7 @@ class QLayerSelect(QComboBox):
 
         if event.type == "removed":
             layer = event.value
-            if isinstance(layer, self.layer_type):
+            if _isinstance_of_layer_type(layer, self.layer_types):
 
                 item_index = self.findText(layer.name)
                 if item_index != -1:
@@ -46,7 +52,7 @@ class QLayerSelect(QComboBox):
                     del self.layer_names[layer]
         elif event.type == "inserted":
             layer = event.value
-            if isinstance(layer, self.layer_type):
+            if _isinstance_of_layer_type(layer, self.layer_types):
                 self.addItem(layer.name)
                 self.layer_names[layer] = layer.name
                 layer.events.name.connect(self._update)
@@ -76,7 +82,7 @@ class QLayerSelect(QComboBox):
         self.layer_names = {
             layer: layer.name
             for layer in viewer.layers
-            if self.layer_type is None or isinstance(layer, self.layer_type)
+            if (None in self.layer_types) or _isinstance_of_layer_type(layer, self.layer_types)
         }
         for layer in self.layer_names:
             layer.events.name.connect(self._update)
@@ -104,7 +110,7 @@ def setup_layerselect(
     Args:
         layout (QLayout): The layout to add the LayerSelectionWidget to.
         viewer (Optional[Viewer], optional): The Napari viewer instance to connect the widget to. Defaults to None.
-        layer_type (Optional[Type[Layer]], optional): A specific Napari layer type to filter by in the selection widget.
+        layer_type (Optional[Union[Type[Layer],List[Type[Layer]]]], optional): A specific Napari layer type to filter by in the selection widget.
         function (Optional[Callable[[str], None]], optional): The function to call when the selection changes.
         tooltips (Optional[str], optional): Tooltip text for the widget. Defaults to None.
         shortcut (Optional[str], optional): A keyboard shortcut to trigger the function. Defaults to None.
