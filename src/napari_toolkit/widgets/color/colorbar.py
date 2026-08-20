@@ -1,11 +1,8 @@
 from typing import Tuple
 
-import matplotlib
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from qtpy.QtWidgets import QLayout, QWidget
-
-matplotlib.use("Qt5Agg")
 
 
 def get_colorbar(

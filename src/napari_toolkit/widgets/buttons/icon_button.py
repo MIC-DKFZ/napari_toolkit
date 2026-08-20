@@ -2,20 +2,27 @@ from typing import Callable, Optional
 
 from napari._qt.qt_resources import QColoredSVGIcon
 from qtpy.QtCore import QEvent, QObject, QSize
-from qtpy.QtGui import QIcon
+from qtpy.QtGui import QIcon, QPalette
 from qtpy.QtWidgets import QLayout, QWidget
 
 from napari_toolkit.widgets.buttons.push_button import setup_pushbutton
 
 
+def _palette_color_role(name: str):
+    """Return a palette role for both legacy and scoped Qt enum APIs."""
+    color_role = getattr(QPalette, "ColorRole", None)
+    if color_role is not None and hasattr(color_role, name):
+        return getattr(color_role, name)
+    return getattr(QPalette, name)
+
+
 class QIconUpdater(QObject):
     """A class that updates a widget's icon color based on its enabled state and theme."""
 
-    def __init__(self, widget: QWidget, icon: QIcon, theme: str, *args, **kwargs):
+    def __init__(self, widget: QWidget, icon: QIcon, *args, **kwargs):
         super().__init__(widget, *args, **kwargs)
         self.widget = widget
         self.icon = icon
-        self.theme = theme
 
     def eventFilter(self, obj: QWidget, event: QEvent) -> bool:
         """Filters events for the widget to detect state changes.
@@ -27,25 +34,21 @@ class QIconUpdater(QObject):
         Returns:
             bool: True if the event was handled, False otherwise.
         """
-        if obj == self.widget and event.type() == QEvent.EnabledChange:
+        if obj is self.widget and event.type() == QEvent.EnabledChange:
             self.update_icon(obj)
-            return super().eventFilter(obj, event)
-
-        else:
-            return super().eventFilter(obj, event)
+        return super().eventFilter(obj, event)
 
     def update_icon(self, obj: QWidget) -> None:
         """Updates the icon color based on the widget's state."""
         palette = obj.palette()
-        if self.widget.isEnabled():
-            color = palette.color(palette.ButtonText)
-        else:
-            color = palette.color(palette.Dark)
+
+        color_role = _palette_color_role("ButtonText" if self.widget.isEnabled() else "Dark")
+        color = palette.color(color_role)
         updated_icon = self.icon.colored(color=color.name())
         self.widget.setIcon(updated_icon)
 
 
-def setup_icon(_widget: QWidget, icon_name: str, theme: str = "dark") -> QIcon:
+def setup_icon(_widget: QWidget, icon_name: str, theme: str = "dark") -> QWidget:
     """Sets up an icon for a widget, including dynamic color updates.
 
     Args:
@@ -63,7 +66,10 @@ def setup_icon(_widget: QWidget, icon_name: str, theme: str = "dark") -> QIcon:
 
     size = _widget.sizeHint().height()
 
-    _widget.installEventFilter(QIconUpdater(_widget, _icon, theme=theme))
+    # Keep a Python reference: PySide can garbage-collect an event filter even
+    # though it has a Qt parent, after which disabled-state icon updates stop.
+    _widget._napari_toolkit_icon_updater = QIconUpdater(_widget, _icon)
+    _widget.installEventFilter(_widget._napari_toolkit_icon_updater)
     _widget.setIconSize(QSize(size, size))
     _widget.setFixedHeight(size + 1)
 

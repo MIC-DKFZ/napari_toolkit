@@ -15,6 +15,25 @@ git clone https://github.com/MIC-DKFZ/napari_toolkit.git
 cd napari_toolkit
 pip install -e ./
 ```
+
+### Qt bindings
+
+`napari_toolkit` supports both PyQt5 and PySide6 through `qtpy`; its public API is
+the same for either binding. Existing PyQt5 projects continue to work unchanged.
+If an application does not already install a Qt binding, choose one explicitly:
+
+```shell
+pip install "napari-toolkit[pyqt5]"   # existing PyQt5 applications
+pip install "napari-toolkit[pyside6]" # PySide6 applications
+```
+
+Only one Qt binding should be active in a process. If both are installed, select
+the intended one before importing `napari`, `qtpy`, or `napari_toolkit`:
+
+```shell
+QT_API=pyside6 python your_app.py
+```
+
 #### 2. (Optional) Initialize your Plugin
 Afterward it is recommended to generate you plugin with [copier] using the [napari-plugin-template].
 

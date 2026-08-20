@@ -23,17 +23,37 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = [
     "numpy",
-    "qtpy",
-    "matplotlib",
+    # qtpy keeps the public widget API independent of the installed Qt binding.
+    # QtPy 2.4+ provides the Qt 5-style enum and class compatibility used here
+    # when the active binding is PySide6/Qt 6.
+    "qtpy>=2.4",
+    "matplotlib>=3.5",
 ]
 
 [project.optional-dependencies]
+# Install exactly one of these extras in applications that do not already bring
+# their own Qt binding (for example, through napari).  Existing PyQt5 projects
+# can continue using the package without changing their imports or setup.
+pyqt5 = [
+    "PyQt5",
+]
+pyside6 = [
+    "PySide6",
+]
 testing = [
     "tox",
     "pytest",  # https://docs.pytest.org/en/latest/contents.html
     "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
     "pytest-qt",
     "PyQt5",
+    "napari",
+]
+testing-pyside6 = [
+    "tox",
+    "pytest",  # https://docs.pytest.org/en/latest/contents.html
+    "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
+    "pytest-qt",
+    "PySide6",
     "napari",
 ]
 
